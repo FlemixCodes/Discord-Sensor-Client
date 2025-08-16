@@ -9,10 +9,10 @@ class TrackerCategory(BaseCategory):
         return await self._get(user_id, f"/get-user-info")
 
     async def get_servers(self, user_id: int):
-        return await self._get(user_id, f"/get-user-info")
+        return await self._get(user_id, f"/get-mutual-guilds")
 
     async def get_nicknames(self, user_id: int, page: int):
-        return await self._get(user_id, f"/get-user-info", {"page": page})
+        return await self._get(user_id, f"/get-nicknames", {"page": page})
 
     async def get_friends(self, user_id: int, page: int):
         return await self._get(user_id, f"/get-friends", {"page": page})
