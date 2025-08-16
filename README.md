@@ -1,5 +1,5 @@
 # Discord-Sensor-Client
-API клиент для discord-sensor.com
+API клиент для discord-sensor.com  
 Некоторые методы из Discord Sensor были изменены для удобства пользователей.  
 Методы нашёл не все, но те что нашёл - сделал))  
 
