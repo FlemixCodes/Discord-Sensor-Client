@@ -43,7 +43,7 @@ class RequestClient:
 
             return data
         except Exception as e:
-            raise DiscordSensorHTTPException(f"Invalid Response: {e}")
+            raise DiscordSensorHTTPException(f"Invalid response: {e}")
 
     async def method(
         self,
