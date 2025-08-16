@@ -17,5 +17,10 @@ class DiscordSensorAPIClient:
         self.tracker = TrackerCategory(self.request_client)
         self.users = UsersCategory(self.request_client)
 
-    async def method(self, method: str, params: dict | None = None) -> dict:
-        return await self.request_client.method(method, params)
+    async def method(
+        self,
+        method: str,
+        params: dict | None = None,
+        content: bool = False,
+    ) -> dict:
+        return await self.request_client.method(method, params, content=content)

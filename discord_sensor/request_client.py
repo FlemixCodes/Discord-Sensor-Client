@@ -15,8 +15,12 @@ class RequestClient:
         self.session = session if session else niquests.AsyncSession()
 
     async def request(
-        self, url: str, params: dict | None = None, method: str = "GET"
-    ) -> dict:
+        self,
+        url: str,
+        params: dict | None = None,
+        method: str = "GET",
+        content: bool = False,
+    ) -> dict | bytes:
         response = await self.session.request(
             url=url,
             params=params,
@@ -25,22 +29,30 @@ class RequestClient:
         )
 
         try:
-            data = response.json()
-        except:
-            raise DiscordSensorHTTPException("Response is invalid")
+            if response.status_code != 200 and response.status_code != 404:
+                raise DiscordSensorHTTPException("Response status code is not 200")
 
-        if data.get("error"):
-            raise DiscordSensorAPIException(data["error"])
+            if response.status_code == 404:
+                data = response.json()
+                raise DiscordSensorAPIException(data["error"])
 
-        if response.status_code != 200:
-            raise DiscordSensorHTTPException("Response status code is not 200")
+            if content:
+                data = response.content
+            else:
+                data = response.json()
 
-        return data
+            return data
+        except Exception as e:
+            raise DiscordSensorHTTPException(f"Invalid Response: {e}")
 
-    async def method(self, method: str, params: dict | None = None) -> dict:
+    async def method(
+        self,
+        method: str,
+        params: dict | None = None,
+        content: bool = False,
+    ) -> dict | bytes:
         url = f"{self.base_url}/{method}"
-        return await self.request(url=url, params=params)
+        return await self.request(url=url, params=params, content=content)
 
     async def close(self):
         await self.session.close()
-        self.session.adapters
