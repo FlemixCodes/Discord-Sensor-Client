@@ -28,13 +28,13 @@ class RequestClient:
             method=method,
         )
 
-        try:
-            if (
-                response.status_code != niquests.codes.ok
-                and response.status_code != niquests.codes.not_found
-            ):
-                raise DiscordSensorHTTPException("Response status code is not 200")
+        if (
+            response.status_code != niquests.codes.ok
+            and response.status_code != niquests.codes.not_found
+        ):
+            raise DiscordSensorHTTPException("Response status code is not 200")
 
+        try:
             if response.status_code == niquests.codes.not_found:
                 data = response.json()
                 raise DiscordSensorAPIException(data["error"])
