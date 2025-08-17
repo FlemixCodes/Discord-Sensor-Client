@@ -54,7 +54,7 @@ class RequestClient:
         params: dict | None = None,
         content: bool = False,
     ) -> dict | bytes:
-        url = f"{self.BASE_URL}/{method}"
+        url = f"{self.BASE_URL}/{method}/"
         return await self.request(url=url, params=params, content=content)
 
     async def close(self):
