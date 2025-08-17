@@ -4,7 +4,7 @@ from .exceptions import DiscordSensorHTTPException, DiscordSensorAPIException
 
 
 class RequestClient:
-    base_url = "https://discord-sensor.com/api"
+    BASE_URL = "https://discord-sensor.com/api"
 
     def __init__(
         self,
