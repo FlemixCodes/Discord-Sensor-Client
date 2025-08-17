@@ -5,7 +5,7 @@ class ServersCategory(BaseCategory):
     async def _get_servers(self, sort_by: str):
         params = {"sort_by": sort_by}
         return await self.request_client.method(
-            f"servers/get-guilds-info", params=params
+            "servers/get-guilds-info", params=params
         )
 
     async def _get_server(self, server_id: int, endpoint: str):
