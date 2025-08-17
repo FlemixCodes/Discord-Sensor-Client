@@ -29,10 +29,13 @@ class RequestClient:
         )
 
         try:
-            if response.status_code != 200 and response.status_code != 404:
+            if (
+                response.status_code != niquests.codes.ok
+                and response.status_code != niquests.codes.not_found
+            ):
                 raise DiscordSensorHTTPException("Response status code is not 200")
 
-            if response.status_code == 404:
+            if response.status_code == niquests.codes.not_found:
                 data = response.json()
                 raise DiscordSensorAPIException(data["error"])
 
@@ -51,7 +54,7 @@ class RequestClient:
         params: dict | None = None,
         content: bool = False,
     ) -> dict | bytes:
-        url = f"{self.base_url}/{method}"
+        url = f"{self.BASE_URL}/{method}"
         return await self.request(url=url, params=params, content=content)
 
     async def close(self):
