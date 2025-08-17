@@ -10,7 +10,7 @@ API клиент для discord-sensor.com
 ![new_example](images/new_example.png)
 
 # Также доступно использование "сырых" методов
-```
+```python
 client = DiscordSensorClient()
 await client.method("get-mutual-guilds/{айди пользователя}")
 ```
