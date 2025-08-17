@@ -12,7 +12,8 @@ API клиент для discord-sensor.com
 # Также доступно использование "сырых" методов
 ```python
 client = DiscordSensorClient()
-await client.method("get-mutual-guilds/{айди пользователя}")
+params = {...}
+await client.method("get-mutual-guilds/{айди пользователя}", params)
 ```
 
 
