@@ -1,10 +1,17 @@
 import niquests
 
 from .request_client import RequestClient
-from .methods import AttachmentsCategory, PhotosCategory, TrackerCategory, UsersCategory
+from .methods import (
+    AttachmentsCategory,
+    PhotosCategory,
+    TrackerCategory,
+    UsersCategory,
+    FunctionsCategory,
+    ServersCategory,
+)
 
 
-class DiscordSensorAPIClient:
+class DiscordSensorClient:
     def __init__(
         self,
         session: niquests.AsyncSession | None = None,
@@ -16,11 +23,13 @@ class DiscordSensorAPIClient:
         self.photos = PhotosCategory(self.request_client)
         self.tracker = TrackerCategory(self.request_client)
         self.users = UsersCategory(self.request_client)
+        self.functions = FunctionsCategory(self.request_client)
+        self.servers = ServersCategory(self.request_client)
 
     async def method(
         self,
         method: str,
         params: dict | None = None,
         content: bool = False,
-    ) -> dict:
+    ) -> dict | bytes:
         return await self.request_client.method(method, params, content=content)

@@ -2,7 +2,7 @@ from ._base import BaseCategory
 
 
 class AttachmentsCategory(BaseCategory):
-    async def get_attachment(self, photo_id: int, attachment_type: str):
+    async def _get_attachment(self, photo_id: int, attachment_type: str):
         attachment_types = {
             "avatar": "e20",
             "deleted": "e21",
@@ -16,13 +16,13 @@ class AttachmentsCategory(BaseCategory):
         )
 
     async def get_avatar(self, photo_id: int):
-        return await self.get_attachment(photo_id, "avatar")
+        return await self._get_attachment(photo_id, "avatar")
 
     async def get_deleted(self, photo_id: int):
-        return await self.get_attachment(photo_id, "deleted")
+        return await self._get_attachment(photo_id, "deleted")
 
     async def get_selfie(self, photo_id: int):
-        return await self.get_attachment(photo_id, "selfie")
+        return await self._get_attachment(photo_id, "selfie")
 
     async def get_screenshot(self, photo_id: int):
-        return await self.get_attachment(photo_id, "screenshot")
+        return await self._get_attachment(photo_id, "screenshot")
