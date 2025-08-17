@@ -9,6 +9,12 @@ API клиент для discord-sensor.com
 # Использование (example.py)
 ![new_example](images/new_example.png)
 
+# Также доступно использование "сырых" методов
+```
+client = DiscordSensorClient()
+await client.method("get-mutual-guilds/{айди пользователя}")
+```
+
 
 # Просто для внимания
 В этом проекте впервые использовал niquests, что могу сказать мне очень понравилось. Работает очень хорошо, а главное - быстро))  
